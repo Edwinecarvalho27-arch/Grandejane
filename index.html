@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Para a Grande Jane 🎀</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Fontes Elegantes & Legíveis -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Ícones Phosphor (Delicados e Modernos) -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <!-- Tone.js para melodia ambiente suave opcional -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            roseDream: {
+              50: '#FFF9FB',
+              100: '#FFF0F5',
+              200: '#FFE0EB',
+              300: '#FFC2D6',
+              400: '#FF94B8',
+              500: '#F26493',
+              600: '#D94375',
+              800: '#6E263F',
+              900: '#4A1829',
+            },
+            cream: '#FFFDF9',
+            goldSoft: '#D4AF37',
+            goldLight: '#F3E5AB',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Estilos Base e Atmosfera Dreamy */
+    * {
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 20%, #FFF9FB 0%, #FFE6F0 55%, #FAD2E1 100%);
+      color: #592336;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Fundo da Sala com Iluminação Quente */
+    .room-wall {
+      background: 
+        radial-gradient(circle at 50% 15%, rgba(255, 250, 240, 0.9) 0%, rgba(255, 228, 238, 0.4) 50%, rgba(244, 194, 212, 0.6) 100%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.25) 0px, rgba(255,255,255,0.25) 28px, transparent 28px, transparent 56px);
+    }
+
+    .room-floor {
+      background: linear-gradient(180deg, #F5D5E0 0%, #EBC0CF 40%, #DFABC0 100%);
+      border-top: 3px solid rgba(212, 175, 55, 0.35);
+      box-shadow: inset 0 12px 24px rgba(110, 38, 63, 0.08);
+    }
+
+    /* Animações Suaves */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(2deg); }
+    }
+
+    @keyframes floatReverse {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-9px) rotate(-2.5deg); }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4)); transform: scale(1); }
+      50% { filter: drop-shadow(0 0 16px rgba(242, 100, 147, 0.6)); transform: scale(1.04); }
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.25; transform: scale(0.85); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    @keyframes flicker {
+      0%, 100% { transform: scaleY(1) rotate(-2deg); opacity: 0.95; }
+      50% { transform: scaleY(1.12) rotate(2deg); opacity: 1; }
+    }
+
+    @keyframes popOut {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.35); opacity: 0.7; }
+      100% { transform: scale(0); opacity: 0; }
+    }
+
+    .animate-float { animation: floatSlow 5.5s ease-in-out infinite; }
+    .animate-float-delay { animation: floatReverse 6.2s ease-in-out infinite; animation-delay: 1.2s; }
+    .animate-glow { animation: pulseGlow 3.5s ease-in-out infinite; }
+    .animate-twinkle { animation: twinkle 3s ease-in-out infinite; }
+    .flame { animation: flicker 0.6s ease-in-out infinite alternate; transform-origin: bottom center; }
+    .balloon-pop { animation: popOut 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+    /* Objetos Interativos na Sala */
+    .interactive-item {
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+      cursor: pointer;
+    }
+
+    .interactive-item:hover {
+      transform: translateY(-4px) scale(1.04);
+      filter: drop-shadow(0 10px 18px rgba(217, 67, 117, 0.22));
+    }
+
+    .interactive-item:active {
+      transform: scale(0.95);
+    }
+
+    /* Vidro Fosco Romântico */
+    .glass-card {
+      background: rgba(255, 253, 249, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 20px 50px rgba(110, 38, 63, 0.16), 0 0 0 1px rgba(212, 175, 55, 0.25);
+    }
+
+    /* Scrollbar personalizada */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #FFF0F5; }
+    ::-webkit-scrollbar-thumb { background: #FFC2D6; border-radius: 10px; }
+
+    /* Pétalas e Confettis Canvas */
+    #particles-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 60;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased selection:bg-roseDream-200 selection:text-roseDream-900">
+
+  <!-- Canvas para Confettis, Corações e Pétalas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- ===================================================================== -->
+  <!-- 1. ECRÃ INICIAL (ENTRADA NA SALINHA)                                  -->
+  <!-- ===================================================================== -->
+  <section id="welcome-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center p-6 text-center transition-all duration-1000" style="background: radial-gradient(circle at 50% 35%, #FFFDF9 0%, #FFE4EE 60%, #F9C6D8 100%);">
+    
+    <!-- Elementos decorativos flutuantes na entrada -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-12 left-8 text-3xl animate-float opacity-80">🎈</div>
+      <div class="absolute top-24 right-10 text-2xl animate-float-delay opacity-75">✨</div>
+      <div class="absolute bottom-28 left-10 text-2xl animate-float-delay opacity-75">🌸</div>
+      <div class="absolute bottom-20 right-8 text-3xl animate-float opacity-80">🎈</div>
+      <div class="absolute top-1/3 left-6 text-roseDream-400 animate-twinkle">✦</div>
+      <div class="absolute top-1/4 right-12 text-goldSoft animate-twinkle" style="animation-delay: 1s;">✦</div>
+    </div>
+
+    <!-- Cartão Central de Boas-Vindas -->
+    <div class="relative z-10 max-w-sm w-full glass-card rounded-3xl p-8 flex flex-col items-center">
+      <!-- Emblema Médico + Romântico Delicado -->
+      <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-roseDream-200 to-roseDream-100 border-2 border-goldLight flex items-center justify-center mb-5 shadow-md animate-glow">
+        <span class="text-4xl">🎀</span>
+      </div>
+
+      <span class="text-xs uppercase tracking-[0.22em] text-roseDream-500 font-semibold mb-2">
+        Edição Especial • Dra. Grande Jane
+      </span>
+
+      <h1 id="welcome-title" class="font-serif text-3xl sm:text-4xl font-semibold text-roseDream-900 leading-tight mb-3">
+        Tenho uma pequena surpresa para ti… 🎀
+      </h1>
+
+      <p id="welcome-subtitle" class="text-sm text-roseDream-800/80 leading-relaxed mb-7">
+        Preparei um cantinho especial, cheio de carinho, memórias e pequenos segredos só teus.
+      </p>
+
+      <button id="enter-room-btn" class="w-full py-3.5 px-6 rounded-full bg-gradient-to-r from-roseDream-400 via-roseDream-500 to-roseDream-400 text-white font-medium text-base shadow-lg shadow-roseDream-400/35 hover:shadow-xl hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2">
+        <span>Entrar</span>
+        <span class="text-lg">♡</span>
+      </button>
+
+      <p class="mt-4 text-[11px] text-roseDream-800/60 flex items-center gap-1.5">
+        <i class="ph ph-speaker-high text-roseDream-500"></i>
+        <span>Aumenta o som para uma experiência mais doce</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 2. A SALINHA VIRTUAL INTERATIVA                                       -->
+  <!-- ===================================================================== -->
+  <main id="room-container" class="hidden opacity-0 transition-opacity duration-1000 min-h-screen flex flex-col justify-between relative overflow-hidden room-wall">
+    
+    <!-- Barra Superior Minimalista (Progresso de Descobertas & Som) -->
+    <header class="sticky top-0 z-40 px-4 py-3 flex items-center justify-between bg-cream/75 backdrop-blur-md border-b border-roseDream-200/60">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-full bg-roseDream-100 border border-goldLight flex items-center justify-center text-sm shadow-sm">
+          🩺
+        </div>
+        <div>
+          <h2 id="room-header-name" class="font-serif font-bold text-lg text-roseDream-900 leading-none">
+            Salinha da Grande Jane
+          </h2>
+          <p class="text-[11px] text-roseDream-600 font-medium mt-0.5">
+            Descobertas: <span id="discovery-count" class="font-bold">0</span>/<span id="discovery-total">12</span> ✨
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <!-- Botão Player Rápido -->
+        <button onclick="openMusicModal()" class="p-2.5 rounded-full bg-roseDream-100 hover:bg-roseDream-200 text-roseDream-800 transition relative shadow-sm" title="Caixinha de Música">
+          <i id="header-music-icon" class="ph-fill ph-music-notes text-lg text-roseDream-500"></i>
+          <span id="music-playing-dot" class="hidden absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-roseDream-500 animate-ping"></span>
+        </button>
+
+        <!-- Botão Gaveta "Para Quando..." -->
+        <button onclick="openDrawerModal()" class="px-3 py-2 rounded-full bg-gradient-to-r from-roseDream-100 to-roseDream-200/80 border border-goldLight/60 text-xs font-semibold text-roseDream-900 shadow-sm hover:scale-105 transition flex items-center gap-1.5">
+          <span>💌</span>
+          <span class="hidden sm:inline">Para quando...</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Dica Flutuante Inicial -->
+    <div id="room-hint" class="mx-auto mt-3 px-4 py-1.5 rounded-full bg-cream/90 border border-roseDream-200 text-xs text-roseDream-800 shadow-sm flex items-center gap-2 animate-bounce">
+      <span>✨</span>
+      <span>Toca nos objetos espalhados pela sala para descobrir surpresas…</span>
+    </div>
+
+    <!-- =================================================================== -->
+    <div class="relative flex-1 w-full max-w-4xl mx-auto px-4 pt-3 pb-8 flex flex-col justify-between gap-4">
+
+      <!-- TETO & LUZES DE FADA / ESTRELAS SECRETAS -->
+      <div class="relative w-full min-h-[84px] flex justify-around items-start pt-2 z-20">
+        <!-- Fio de Luzes Decorativo SVG -->
+        <svg class="absolute inset-x-0 top-0 w-full h-14 pointer-events-none" viewBox="0 0 800 60" preserveAspectRatio="none">
+          <path d="M0,5 Q200,45 400,12 T800,8" fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-opacity="0.5" />
+          <circle cx="120" cy="24" r="4" fill="#FFF3B0" />
+          <circle cx="260" cy="28" r="4.5" fill="#FFC2D6" />
+          <circle cx="400" cy="12" r="4" fill="#FFF3B0" />
+          <circle cx="540" cy="26" r="4.5" fill="#FFC2D6" />
+          <circle cx="680" cy="22" r="4" fill="#FFF3B0" />
+        </svg>
+
+        <!-- SEGREDO 1: Estrela Dourada Escondida no Topo -->
+        <button onclick="triggerSecret(0, this)" class="interactive-item relative z-10 mt-3 p-2.5 text-goldSoft hover:text-amber-400 animate-twinkle" aria-label="Estrela brilhante">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 1L14.8 8.8L23 9.5L16.7 14.8L18.7 23L12 18.5L5.3 23L7.3 14.8L1 9.5L9.2 8.8L12 1Z"/>
+          </svg>
+        </button>
+
+        <!-- BALÃO 1 (Flutuante à Esquerda) -->
+        <button id="balloon-1" onclick="popBalloon(0, this)" class="interactive-item relative z-10 animate-float mt-1 p-1 flex flex-col items-center" aria-label="Balão rosa">
+          <svg width="54" height="72" viewBox="0 0 60 80">
+            <defs>
+              <radialGradient id="bGrad1" cx="35%" cy="30%" r="65%">
+                <stop offset="0%" stop-color="#FFF5F8"/>
+                <stop offset="45%" stop-color="#FF94B8"/>
+                <stop offset="100%" stop-color="#E05283"/>
+              </radialGradient>
+            </defs>
+            <path d="M30,58 Q28,68 32,78" fill="none" stroke="#D4AF37" stroke-width="1.2"/>
+            <ellipse cx="30" cy="30" rx="22" ry="27" fill="url(#bGrad1)"/>
+            <polygon points="27,57 33,57 30,61" fill="#E05283"/>
+            <ellipse cx="22" cy="20" rx="4" ry="8" transform="rotate(-20 22 20)" fill="rgba(255,255,255,0.6)"/>
+          </svg>
+        </button>
+
+        <!-- BALÃO 2 (Flutuante ao Centro-Direita) -->
+        <button id="balloon-2" onclick="popBalloon(1, this)" class="interactive-item relative z-10 animate-float-delay mt-2 p-1 flex flex-col items-center" aria-label="Balão pérola">
+          <svg width="50" height="68" viewBox="0 0 60 80">
+            <defs>
+              <radialGradient id="bGrad2" cx="35%" cy="30%" r="65%">
+                <stop offset="0%" stop-color="#FFFFFF"/>
+                <stop offset="55%" stop-color="#FFE0EB"/>
+                <stop offset="100%" stop-color="#F5A3C0"/>
+              </radialGradient>
+            </defs>
+            <path d="M30,58 Q33,68 29,78" fill="none" stroke="#D4AF37" stroke-width="1.2"/>
+            <ellipse cx="30" cy="30" rx="21" ry="26" fill="url(#bGrad2)"/>
+            <polygon points="27,56 33,56 30,60" fill="#F5A3C0"/>
+            <ellipse cx="22" cy="20" rx="3.5" ry="7" transform="rotate(-20 22 20)" fill="rgba(255,255,255,0.8)"/>
+          </svg>
+        </button>
+
+        <!-- BALÃO 3 (Segredo Escondido no Balão Dourado) -->
+        <button id="balloon-3" onclick="triggerSecret(1, this)" class="interactive-item relative z-10 animate-float mt-0 p-1 flex flex-col items-center" aria-label="Balão dourado especial">
+          <svg width="46" height="64" viewBox="0 0 60 80">
+            <defs>
+              <radialGradient id="bGradGold" cx="35%" cy="30%" r="65%">
+                <stop offset="0%" stop-color="#FFFDF5"/>
+                <stop offset="50%" stop-color="#F3E5AB"/>
+                <stop offset="100%" stop-color="#D4AF37"/>
+              </radialGradient>
+            </defs>
+            <path d="M30,58 Q28,68 31,78" fill="none" stroke="#D4AF37" stroke-width="1.2"/>
+            <ellipse cx="30" cy="30" rx="20" ry="25" fill="url(#bGradGold)"/>
+            <polygon points="27,55 33,55 30,59" fill="#D4AF37"/>
+            <ellipse cx="22" cy="20" rx="3.5" ry="7" transform="rotate(-20 22 20)" fill="rgba(255,255,255,0.8)"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- ZONA DA PAREDE: QUADRO DE DEDICATÓRIA & PRATELEIRA -->
+      <div class="relative z-10 my-2 grid grid-cols-12 gap-5 items-center">
+        
+        <!-- Quadro de Dedicatória na Parede (Esquerda/Centro) -->
+        <div class="col-span-12 sm:col-span-7 flex justify-center p-2">
+          <div class="w-full max-w-sm glass-card rounded-3xl p-5 sm:p-6 text-center border-2 border-goldLight/70 shadow-md relative">
+            <span class="text-xs uppercase tracking-[0.2em] text-roseDream-500 font-semibold block mb-1.5">
+              Para a Minha Irmã ♡
+            </span>
+            <p class="font-serif italic text-xl sm:text-2xl text-roseDream-900 leading-relaxed">
+              “Não sei o que seria da minha vida sem ti, minha irmã.”
+            </p>
+            <div class="mt-2.5 flex justify-center gap-1.5 text-roseDream-400 text-xs">
+              <span>✦</span><span>💗</span><span>✦</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prateleira Suspensa na Parede (Direita) -->
+        <div class="col-span-12 sm:col-span-5 flex flex-col items-center justify-center mt-2 sm:mt-0">
+          <div class="w-full max-w-xs flex items-end justify-around gap-3 px-3 pb-2">
+            
+            <!-- CAIXINHA DE MÚSICA / RÁDIO -->
+            <button onclick="openMusicModal()" class="interactive-item flex flex-col items-center" aria-label="Caixinha de Música">
+              <div class="w-16 h-14 rounded-2xl bg-gradient-to-b from-cream to-roseDream-100 border border-goldSoft/60 shadow-md flex flex-col items-center justify-between p-1.5">
+                <div class="flex gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-roseDream-400"></span>
+                  <span class="w-1.5 h-1.5 rounded-full bg-goldSoft"></span>
+                </div>
+                <div class="w-full h-5 rounded-lg bg-roseDream-200/70 flex items-center justify-center gap-1">
+                  <i class="ph-fill ph-vinyl-record text-roseDream-600 text-sm animate-spin" style="animation-duration: 6s;"></i>
+                  <span class="text-[8px] font-semibold text-roseDream-900 tracking-wider">PLAY</span>
+                </div>
+              </div>
+              <span class="mt-1.5 text-[10px] font-medium text-roseDream-900 bg-cream/90 px-2 py-0.5 rounded-full shadow-sm">🎵 Músicas</span>
+            </button>
+
+            <!-- CORAÇÃO DE CRISTAL ("Coisas que amo em ti") -->
+            <button onclick="openLoveReasonsModal()" class="interactive-item flex flex-col items-center animate-glow" aria-label="Coisas que amo em ti">
+              <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-roseDream-200 via-roseDream-100 to-white border border-goldLight flex items-center justify-center shadow-md">
+                <span class="text-3xl">💗</span>
+              </div>
+              <span class="mt-1.5 text-[10px] font-medium text-roseDream-900 bg-cream/90 px-2 py-0.5 rounded-full shadow-sm">Amo em ti</span>
+            </button>
+
+            <!-- SEGREDO 2: Estetoscópio / Amuleto Médico Dourado -->
+            <button onclick="triggerSecret(2, this)" class="interactive-item flex flex-col items-center" aria-label="Amuleto da Dra. Jane">
+              <div class="w-14 h-14 rounded-2xl bg-cream border border-goldSoft/50 flex items-center justify-center shadow-sm text-2xl">
+                🩺
+              </div>
+              <span class="mt-1.5 text-[10px] font-medium text-roseDream-900 bg-cream/90 px-2 py-0.5 rounded-full shadow-sm">Dra. Jane</span>
+            </button>
+
+          </div>
+          <!-- Madeira/Dourado da Prateleira -->
+          <div class="w-full max-w-xs h-3 rounded-full bg-gradient-to-r from-roseDream-200 via-cream to-roseDream-200 border border-goldSoft/50 shadow-md"></div>
+        </div>
+      </div>
+
+      <!-- ================================================================= -->
+      <!-- MESA PRINCIPAL DE ANIVERSÁRIO (BOLO, CARTA, FLORES, PRESENTE)     -->
+      <!-- ================================================================= -->
+      <div class="mt-4 relative flex flex-col items-center">
+        
+        <!-- Objetos em cima da Mesa -->
+        <div class="w-full max-w-2xl grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 items-end px-2 z-10">
+          
+          <!-- 1. JARRA DE FLORES -->
+          <button onclick="openFlowersModal()" class="interactive-item flex flex-col items-center justify-end p-2" aria-label="Flores">
+            <div class="relative flex flex-col items-center">
+              <span class="text-4xl sm:text-5xl drop-shadow-sm">🌷</span>
+              <div class="w-11 h-9 -mt-2 rounded-b-2xl rounded-t-md bg-gradient-to-b from-white to-roseDream-200 border border-goldSoft/50 shadow-inner flex items-center justify-center">
+                <span class="text-[10px] text-roseDream-500">♡</span>
+              </div>
+            </div>
+            <span class="mt-1.5 text-xs font-medium text-roseDream-900 bg-cream/90 px-2.5 py-0.5 rounded-full shadow-sm border border-roseDream-100">
+              🌷 Flores
+            </span>
+          </button>
+
+          <!-- 2. BOLO DE ANIVERSÁRIO COM VELAS INTERATIVAS -->
+          <button onclick="openCakeModal()" class="interactive-item flex flex-col items-center justify-end p-2" aria-label="Bolo de aniversário">
+            <div class="relative flex flex-col items-center">
+              <!-- Velinhas -->
+              <div class="flex gap-2 mb-0.5">
+                <div class="w-1.5 h-4 bg-roseDream-400 rounded-full relative flex justify-center">
+                  <div class="w-2 h-3 bg-amber-300 rounded-full -mt-3 flame shadow-[0_0_8px_#FBBF24]"></div>
+                </div>
+                <div class="w-1.5 h-5 bg-goldSoft rounded-full relative flex justify-center">
+                  <div class="w-2 h-3 bg-amber-300 rounded-full -mt-3 flame shadow-[0_0_8px_#FBBF24]"></div>
+                </div>
+                <div class="w-1.5 h-4 bg-roseDream-400 rounded-full relative flex justify-center">
+                  <div class="w-2 h-3 bg-amber-300 rounded-full -mt-3 flame shadow-[0_0_8px_#FBBF24]"></div>
+                </div>
+              </div>
+              <!-- Andares do Bolo -->
+              <div class="w-16 h-6 rounded-t-xl bg-cream border-b-2 border-roseDream-200 shadow-sm flex items-center justify-around px-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-roseDream-400"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-goldSoft"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-roseDream-400"></span>
+              </div>
+              <div class="w-22 h-8 rounded-t-lg rounded-b-md bg-gradient-to-r from-roseDream-200 via-roseDream-100 to-roseDream-200 border border-roseDream-300/60 shadow-md flex items-center justify-center px-3">
+                <span class="font-serif italic text-[11px] font-bold text-roseDream-800">Jane</span>
+              </div>
+              <!-- Prato Dourado -->
+              <div class="w-26 h-2 rounded-full bg-gradient-to-r from-goldLight via-goldSoft to-goldLight shadow"></div>
+            </div>
+            <span class="mt-1.5 text-xs font-medium text-roseDream-900 bg-cream/90 px-2.5 py-0.5 rounded-full shadow-sm border border-roseDream-100">
+              🎂 Bolo
+            </span>
+          </button>
+
+          <!-- 3. CARTINHA DE ANIVERSÁRIO -->
+          <button onclick="openLetterModal()" class="interactive-item flex flex-col items-center justify-end p-2" aria-label="Carta de aniversário">
+            <div class="relative w-20 h-14 bg-cream rounded-xl border-2 border-roseDream-300 shadow-md flex items-center justify-center overflow-hidden transform -rotate-3">
+              <!-- Aba do envelope -->
+              <div class="absolute top-0 inset-x-0 h-7 bg-roseDream-100 border-b border-roseDream-200" style="clip-path: polygon(0 0, 50% 100%, 100% 0);"></div>
+              <!-- Selo de Coração -->
+              <div class="relative z-10 w-6 h-6 rounded-full bg-roseDream-500 text-white text-xs flex items-center justify-center shadow">
+                ♡
+              </div>
+            </div>
+            <span class="mt-1.5 text-xs font-medium text-roseDream-900 bg-cream/90 px-2.5 py-0.5 rounded-full shadow-sm border border-roseDream-100">
+              💌 Cartinha
+            </span>
+          </button>
+
+          <!-- 4. CAIXA DE PRESENTE -->
+          <button onclick="openGiftModal()" class="interactive-item flex flex-col items-center justify-end p-2" aria-label="Presente especial">
+            <div class="relative flex flex-col items-center">
+              <!-- Laço -->
+              <div class="text-xl -mb-2 z-10">🎀</div>
+              <!-- Tampa -->
+              <div class="w-18 h-4 rounded-t-md bg-roseDream-400 border-b border-roseDream-500 shadow-sm px-6">
+                <div class="w-3 h-full bg-goldLight mx-auto"></div>
+              </div>
+              <!-- Caixa -->
+              <div class="w-16 h-12 rounded-b-lg bg-gradient-to-b from-roseDream-300 to-roseDream-400 shadow-md flex justify-center">
+                <div class="w-3 h-full bg-goldLight"></div>
+              </div>
+            </div>
+            <span class="mt-1.5 text-xs font-medium text-roseDream-900 bg-cream/90 px-2.5 py-0.5 rounded-full shadow-sm border border-roseDream-100">
+              🎁 Presente
+            </span>
+          </button>
+
+        </div>
+
+        <!-- Superfície da Mesa Elegante -->
+        <div class="w-full max-w-3xl h-5 rounded-full bg-gradient-to-r from-cream via-white to-cream border-2 border-goldLight shadow-lg -mt-1"></div>
+        
+        <!-- GAVETA DA MESA ("PARA QUANDO..." & MEMÓRIAS) + PEQUENOS SEGREDOS NO CHÃO -->
+        <div class="w-full max-w-2xl bg-gradient-to-b from-roseDream-100 to-roseDream-200/90 border-x border-b border-goldSoft/40 rounded-b-3xl p-4 shadow-md flex flex-wrap items-center justify-between gap-3">
+          
+          <!-- Gaveta "Para Quando..." -->
+          <button onclick="openDrawerModal()" class="interactive-item flex-1 min-w-[140px] bg-cream/90 hover:bg-white rounded-2xl p-3 border border-roseDream-200 shadow-sm flex items-center gap-3 text-left">
+            <span class="text-2xl">🗂️</span>
+            <div>
+              <p class="font-serif font-bold text-sm text-roseDream-900">Gaveta “Para quando…”</p>
+              <p class="text-[11px] text-roseDream-700">6 cartões para o teu coração</p>
+            </div>
+          </button>
+
+          <!-- Álbum / Linha do Tempo de Memórias -->
+          <button onclick="openMemoriesModal()" class="interactive-item flex-1 min-w-[140px] bg-cream/90 hover:bg-white rounded-2xl p-3 border border-roseDream-200 shadow-sm flex items-center gap-3 text-left">
+            <span class="text-2xl">🕰️</span>
+            <div>
+              <p class="font-serif font-bold text-sm text-roseDream-900">Nossas Datas</p>
+              <p class="text-[11px] text-roseDream-700">Memórias & contador</p>
+            </div>
+          </button>
+
+        </div>
+      </div>
+
+      <!-- RODAPÉ DA SALA: SEGREDO ESCONDIDO NO CANTO + BOTÃO ÚLTIMA SURPRESA -->
+      <div class="mt-6 pt-3 flex items-center justify-between gap-3">
+        
+        <!-- SEGREDO 3: Coraçãozinho discreto no tapete -->
+        <button onclick="triggerSecret(3, this)" class="interactive-item p-2.5 rounded-full bg-cream/70 border border-roseDream-200 text-roseDream-400 hover:text-roseDream-600 shadow-sm" title="Algo pequeno brilhando no chão...">
+          <span class="text-sm">🩷</span>
+        </button>
+
+        <!-- BOTÃO ÚLTIMA SURPRESA -->
+        <button id="final-surprise-btn" onclick="openFinalSurprise()" class="px-6 py-3 rounded-full bg-gradient-to-r from-roseDream-500 via-pink-500 to-roseDream-500 text-white font-serif text-lg font-semibold shadow-lg shadow-roseDream-500/30 hover:shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-2 border border-goldLight/60">
+          <span>✨ Última surpresa ♡</span>
+        </button>
+
+        <!-- SEGREDO 4: Caixinha secreta à direita -->
+        <button onclick="triggerSecret(4, this)" class="interactive-item p-2.5 rounded-full bg-cream/70 border border-goldLight text-goldSoft hover:scale-110 shadow-sm" title="Uma pequena caixinha dourada">
+          <span class="text-sm">✨</span>
+        </button>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- 3. MODAL UNIVERSAL REUTILIZÁVEL (CARTAS, SEGREDOS, BOLO, ETC.)        -->
+  <!-- ===================================================================== -->
+  <div id="modal-backdrop" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-roseDream-900/40 backdrop-blur-sm transition-opacity duration-300 opacity-0">
+    <div id="modal-box" class="relative w-full max-w-md max-h-[88vh] overflow-y-auto glass-card rounded-3xl p-6 sm:p-8 text-center transform scale-95 transition-transform duration-300">
+      
+      <!-- Botão Fechar -->
+      <button onclick="closeModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-roseDream-100 hover:bg-roseDream-200 text-roseDream-800 flex items-center justify-center transition">
+        <i class="ph ph-x text-lg"></i>
+      </button>
+
+      <!-- Conteúdo Injetado Dinamicamente -->
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 4. ECRÃ FINAL EMOCIONAL (SURPRESA FINAL)                              -->
+  <!-- ===================================================================== -->
+  <section id="final-screen" class="fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-1000 flex flex-col items-center justify-center p-6 text-center overflow-y-auto" style="background: radial-gradient(circle at 50% 30%, #FFFDF9 0%, #FFD6E5 55%, #F5A3C0 100%);">
+    <div class="max-w-lg w-full glass-card rounded-3xl p-8 sm:p-10 my-auto relative border-2 border-goldLight">
+      <div class="text-4xl mb-4 animate-bounce">💖✨</div>
+      
+      <span class="text-xs uppercase tracking-[0.25em] text-roseDream-600 font-semibold">
+        Para Sempre no Meu Coração
+      </span>
+
+      <h2 id="final-title" class="font-serif text-3xl sm:text-4xl font-bold text-roseDream-900 mt-2 mb-5">
+        Feliz Aniversário, Grande Jane ♡
+      </h2>
+
+      <div id="final-message" class="font-serif text-xl sm:text-2xl text-roseDream-800 leading-relaxed space-y-4 italic">
+        <!-- Preenchido pelo CONFIG -->
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-roseDream-200 flex flex-col sm:flex-row gap-3 justify-center">
+        <button onclick="burstConfetti(80)" class="px-5 py-2.5 rounded-full bg-roseDream-100 hover:bg-roseDream-200 text-roseDream-900 text-sm font-medium transition">
+          🎉 Mais Confettis & Corações
+        </button>
+        <button onclick="closeFinalScreen()" class="px-5 py-2.5 rounded-full bg-roseDream-500 text-white text-sm font-medium shadow hover:bg-roseDream-600 transition">
+          Voltar à Salinha 🎀
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Elemento de Áudio Real (para quando adicionares os teus MP3s) -->
+  <audio id="bg-audio" preload="none"></audio>
+
+  <!-- ===================================================================== -->
+  <!-- 5. CONFIGURAÇÃO CENTRAL & LÓGICA INTERATIVA                           -->
+  <!-- ===================================================================== -->
+  <script>
+    /**
+     * =========================================================================
+     * 🎀 PAINEL DE PERSONALIZAÇÃO FÁCIL (EDITA AQUI TODO O CONTEÚDO!) 🎀
+     * =========================================================================
+     * Basta alterares os textos, datas, links de fotos e ficheiros de música
+     * abaixo. Tudo na sala atualiza-se automaticamente!
+     */
+    const CONFIG = {
+      // 1. Dados da Aniversariante
+      name: "Grande Jane",
+      title: "Dra. Grande Jane",
+      age: "o teu dia especial", // Ex: "26 anos" ou "o teu dia especial"
+
+      // 2. Ecrã de Boas-Vindas
+      welcomeTitle: "Tenho uma pequena surpresa para ti… 🎀",
+      welcomeSubtitle: "Preparei esta pequena salinha virtual só para ti, Grande Jane. Entra devagarinho e explora cada cantinho feito com amor.",
+
+      // 3. Mensagens dos Balões Flutuantes (ao estourar)
+      balloons: [
+        "Sabias que és uma das pessoas mais especiais que tenho na minha vida? O mundo fica mais bonito só por existires. ♡",
+        "Tens um coração gigante, um sorriso que ilumina qualquer sala e uma alma que inspira toda a gente à tua volta. ✨"
+      ],
+
+      // 4. Presente Especial
+      giftTitle: "Um Presente Para Ti 🎁",
+      giftMessage: "Este presente virtual não é grande o suficiente para guardar tudo o que sinto por ti, nem toda a admiração que tenho pela mulher e médica incrível que és. Mas guarda a promessa de que estarei sempre aqui para ti. ♡",
+
+      // 5. Cartinha de Aniversário (Texto longo e sentimental)
+      letterTitle: "Para a minha Grande Jane 💌",
+      letterSalutation: "Querida Grande Jane,",
+      letterParagraphs: [
+        "Hoje o dia pertence-te, e eu queria criar um lugar onde pudesses sentir, mesmo à distância de um ecrã, o tamanho do carinho e da admiração que tenho por ti.",
+        "Admiro profundamente a tua força, a tua delicadeza e a forma como cuidas dos outros na tua caminhada como médica — sem nunca perderes essa doçura única que te torna tão especial.",
+        "Que este novo ano de vida te traga turnos tranquilos, sonhos realizados, abraços demorados e a certeza absoluta de que nunca caminhas sozinha.",
+        "Obrigada por seres exatamente quem és. Feliz aniversário!"
+      ],
+      letterSignature: "Com todo o meu carinho e amor ♡",
+
+      // 6. Playlist de Músicas
+      // DICA: Para tocar as músicas originais, coloca o link .mp3 em 'src' (ex: "musicas/velha-infancia.mp3").
+      // Enquanto 'src' estiver vazio (""), a aplicação toca uma melodia suave de caixinha de música!
+      playlist: [
+        { title: "Velha Infância", artist: "Tribalistas", moment: "Para sentir o nosso carinho", src: "" },
+        { title: "Count on Me", artist: "Bruno Mars", moment: "Para lembrares que estou sempre aqui", src: "" },
+        { title: "Canção da América", artist: "Milton Nascimento", moment: "Para guardar no lado esquerdo do peito", src: "" },
+        { title: "I’ll Be There For You", artist: "The Rembrandts", moment: "Para sorrir e celebrar", src: "" },
+        { title: "Dia Especial", artist: "Tiago Iorc", moment: "Porque hoje o dia é todo teu", src: "" },
+        { title: "Fico Assim Sem Você", artist: "Adriana Calcanhotto", moment: "Para os momentos de saudade", src: "" },
+        { title: "You’ve Got a Friend in Me", artist: "Randy Newman", moment: "Para todas as aventuras", src: "" }
+      ],
+
+      // 7. Flores Interativas (Mensagens / Memórias ao clicar nas flores)
+      flowers: [
+        { emoji: "🌷", name: "Tulipa Rosa", text: "Assim como as flores mais bonitas, tu tens o dom de trazer calma e cor até aos dias mais cinzentos." },
+        { emoji: "🌸", name: "Flor de Cerejeira", text: "Cada detalhe teu — o teu jeito de falar, o teu cuidado com os outros — floresce na memória de quem tem a sorte de te conhecer." },
+        { emoji: "🤍", name: "Jasmim Branco", text: "Desejo que a tua vida seja sempre perfumada de paz, saúde, conquistas na medicina e muito amor." }
+      ],
+
+      // 8. Coração: "Coisas que amo em ti"
+      thingsILove: [
+        "Não sei o que seria da minha vida sem ti, minha irmã. Obrigada por seres o meu porto seguro. 💗",
+        "A forma genuína e carinhosa como cuidas de toda a gente à tua volta. 🩺💗",
+        "O teu sorriso que consegue acalmar qualquer tempestade num segundo. ✨",
+        "A tua inteligência, dedicação e coragem para enfrentar qualquer desafio.",
+        "O teu senso de humor e as gargalhadas espontâneas que tornam tudo mais leve. 🎀",
+        "A sensibilidade e doçura que guardas no coração, mesmo nos dias mais cansativos.",
+        "O simples facto de seres tu — autêntica, luminosa e insubstituível. ♡"
+      ],
+
+      // 9. Bolo de Aniversário
+      cakeWishMessage: "Pedidos feitos e velas apagadas! 🎂✨ Que todos os teus sonhos mais bonitos se realizem neste novo ciclo, Grande Jane. Mereces o mundo inteiro!",
+
+      // 11. Pequenos Segredos Escondidos pela Sala (5 segredos)
+      secrets: [
+        {
+          title: "Encontraste uma estrela secreta! 🤫✨",
+          text: "Mesmo nos dias em que o céu parecer nublado, lembra-te de que tu própria és luz."
+        },
+        {
+          title: "Segredo do Balão Dourado! 🎈💛",
+          text: "Vale um abraço bem apertado e um desejo à tua escolha na próxima vez que estivermos juntos!"
+        },
+        {
+          title: "Segredo da Dra. Grande Jane! 🩺💖",
+          text: "Cuidas de tanta gente todos os dias… mas nunca te esqueças de que também mereces ser cuidada e mimada."
+        },
+        {
+          title: "Coração Escondido Encontrado! 🩷",
+          text: "Psst: tens um lugar cativo e muito especial no meu coração. Sempre."
+        },
+        {
+          title: "Caixinha Dourada Secreta! ✨🎁",
+          text: "Curiosa até ao fim! É por isso que adoro cada pedacinho da tua personalidade."
+        }
+      ],
+
+      // 12. Gaveta "Para Quando..."
+      openWhenCards: [
+        {
+          label: "Para quando estiveres triste",
+          emoji: "🌧️",
+          message: "Respira fundo, meu bem. Está tudo bem não estar forte o tempo todo. Lembra-te de quantas vezes já superaste dias difíceis e de que eu estou aqui para segurar a tua mão sempre que precisares. ♡"
+        },
+        {
+          label: "Para quando precisares de um abraço",
+          emoji: "🫂",
+          message: "Fecha os olhos por cinco segundos e imagina o abraço mais quente, demorado e protetor do mundo. Assim que estivermos juntos, eu entrego-te o original a dobrar! 💗"
+        },
+        {
+          label: "Para quando duvidares de ti",
+          emoji: "🩺",
+          message: "Olha para tudo o que já conquistaste. És brilhante, capaz, dedicada e tens um coração raro. Quando duvidares da tua força, empresto-te os meus olhos para veres o quão extraordinária és."
+        },
+        {
+          label: "Para quando precisares de sorrir",
+          emoji: "😊",
+          message: "Lembra-te de que o teu sorriso é literalmente a coisa mais bonita desta sala! Faz uma careta, respira fundo e deixa a alegria entrar. ✨"
+        },
+        {
+          label: "Para quando sentires saudades",
+          emoji: "🌙",
+          message: "A distância é só um detalhe geográfico quando duas pessoas estão ligadas pelo coração. Manda-me uma mensagem agora mesmo — estou a pensar em ti. 💌"
+        },
+        {
+          label: "Para quando quiseres lembrar-te do quanto és amada",
+          emoji: "💖",
+          message: "És amada nos teus dias bons, nos teus dias cansados, nas tuas vitórias e nos teus silêncios. Hoje e sempre, és profundamente amada, Grande Jane. ♡"
+        }
+      ],
+
+      // 13. Contador & Memórias Importantes
+      // Coloca uma data real no formato "AAAA-MM-DD" para o contador funcionar ao vivo!
+      importantDate: "2023-05-15", 
+      importantDateLabel: "Desde que te conheci…",
+      memories: [
+        {
+          date: "O Começo",
+          title: "O dia em que os nossos caminhos se cruzaram",
+          desc: "Nem imaginava o quanto te tornarias importante na minha vida."
+        },
+        {
+          date: "Um Dia Favorito",
+          title: "Conversas que parecem durar cinco minutos",
+          desc: "Aquelas horas em que o tempo desaparece só porque estamos a conversar e a rir."
+        },
+        {
+          date: "Hoje • O Teu Dia",
+          title: "O Aniversário da Grande Jane 🎂",
+          desc: "Mais um capítulo lindo da tua história que tenho o privilégio de celebrar."
+        }
+      ],
+
+      // 14. Mensagem Final Emocional
+      finalTitle: "Feliz Aniversário, Grande Jane ♡",
+      finalLines: [
+        "“Espero que nunca te esqueças de uma coisa:",
+        "és profundamente amada.",
+        "Hoje, amanhã e em todos os dias que vierem. ♡”"
+      ]
+    };
+
+    /**
+     * =========================================================================
+     * ESTADO DA APLICAÇÃO & INICIALIZAÇÃO
+     * =========================================================================
+     */
+    const state = {
+      discovered: new Set(),
+      totalDiscoveries: 10,
+      currentTrackIndex: 0,
+      isPlaying: false,
+      volume: 0.6,
+      loveReasonIndex: 0,
+      candlesLit: [true, true, true],
+      synthPlaying: false,
+      synthLoop: null
+    };
+
+    const audioEl = document.getElementById('bg-audio');
+
+    // Inicializar textos e elementos dinâmicos ao carregar
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('welcome-title').textContent = CONFIG.welcomeTitle;
+      document.getElementById('welcome-subtitle').textContent = CONFIG.welcomeSubtitle;
+      document.getElementById('room-header-name').textContent = `Salinha da ${CONFIG.name}`;
+      document.getElementById('discovery-total').textContent = state.totalDiscoveries;
+      document.getElementById('final-title').textContent = CONFIG.finalTitle;
+
+      const finalContainer = document.getElementById('final-message');
+      finalContainer.innerHTML = CONFIG.finalLines.map(line => `<p>${line}</p>`).join('');
+
+      initParticles();
+    });
+
+    // Registar progresso de exploração
+    function markDiscovered(id) {
+      if (!state.discovered.has(id)) {
+        state.discovered.add(id);
+        document.getElementById('discovery-count').textContent = state.discovered.size;
+        if (state.discovered.size === 1) {
+          const hint = document.getElementById('room-hint');
+          if (hint) hint.style.display = 'none';
+        }
+      }
+    }
+
+    /**
+     * =========================================================================
+     * ENTRADA NA SALINHA & ÁUDIO AMBIENTE SUAVE
+     * =========================================================================
+     */
+    document.getElementById('enter-room-btn').addEventListener('click', async () => {
+      const welcome = document.getElementById('welcome-screen');
+      const room = document.getElementById('room-container');
+
+      burstConfetti(45);
+      startAudioExperience();
+
+      welcome.classList.add('opacity-0', 'scale-105', 'pointer-events-none');
+      room.classList.remove('hidden');
+      
+      setTimeout(() => {
+        room.classList.remove('opacity-0');
+        welcome.style.display = 'none';
+      }, 700);
+    });
+
+    // Inicia áudio MP3 se existir, ou melodia suave de caixinha de música via Tone.js
+    async function startAudioExperience() {
+      const track = CONFIG.playlist[state.currentTrackIndex];
+      if (track && track.src) {
+        audioEl.src = track.src;
+        audioEl.volume = state.volume;
+        try {
+          await audioEl.play();
+          state.isPlaying = true;
+          updateMusicIndicators();
+        } catch (e) {
+          console.log("Autoplay aguardando interação manual.");
+        }
+      } else {
+        startMusicBoxSynth();
+      }
+    }
+
+    async function startMusicBoxSynth() {
+      if (state.synthPlaying) return;
+      try {
+        await Tone.start();
+        const synth = new Tone.PolySynth(Tone.Synth, {
+          oscillator: { type: "sine" },
+          envelope: { attack: 0.05, decay: 0.6, sustain: 0.1, release: 1.8 }
+        }).toDestination();
+        synth.volume.value = -16;
+
+        // Melodia doce estilo caixinha de música
+        const notes = ["E5", "G5", "B5", "A5", "G5", "E5", "D5", "F#5", "A5", "G5", "E5", "B4"];
+        let idx = 0;
+        state.synthLoop = new Tone.Loop((time) => {
+          synth.triggerAttackRelease(notes[idx % notes.length], "4n", time);
+          idx++;
+        }, "2n").start(0);
+
+        Tone.Transport.start();
+        state.synthPlaying = true;
+        state.isPlaying = true;
+        updateMusicIndicators();
+      } catch (err) {
+        console.warn("Sintetizador aguardando clique:", err);
+      }
+    }
+
+    function togglePlayPause() {
+      const track = CONFIG.playlist[state.currentTrackIndex];
+      if (track && track.src) {
+        if (audioEl.paused) {
+          audioEl.play();
+          state.isPlaying = true;
+        } else {
+          audioEl.pause();
+          state.isPlaying = false;
+        }
+      } else {
+        if (!state.synthLoop) {
+          startMusicBoxSynth();
+        } else if (state.isPlaying) {
+          Tone.Transport.pause();
+          state.isPlaying = false;
+        } else {
+          Tone.Transport.start();
+          state.isPlaying = true;
+        }
+      }
+      updateMusicIndicators();
+    }
+
+    function selectTrack(index) {
+      state.currentTrackIndex = index;
+      const track = CONFIG.playlist[index];
+      if (track.src) {
+        if (state.synthPlaying) {
+          Tone.Transport.pause();
+          state.synthPlaying = false;
+        }
+        audioEl.src = track.src;
+        audioEl.volume = state.volume;
+        audioEl.play().then(() => {
+          state.isPlaying = true;
+          updateMusicIndicators();
+          openMusicModal();
+        }).catch(() => {});
+      } else {
+        if (!state.synthLoop) startMusicBoxSynth();
+        else {
+          Tone.Transport.start();
+          state.isPlaying = true;
+        }
+        updateMusicIndicators();
+        openMusicModal();
+      }
+    }
+
+    function changeVolume(val) {
+      state.volume = parseFloat(val);
+      audioEl.volume = state.volume;
+      if (typeof Tone !== 'undefined') {
+        Tone.Destination.volume.value = state.volume === 0 ? -Infinity : (state.volume - 1) * 24;
+      }
+    }
+
+    function updateMusicIndicators() {
+      const dot = document.getElementById('music-playing-dot');
+      if (state.isPlaying) dot.classList.remove('hidden');
+      else dot.classList.add('hidden');
+    }
+
+    /**
+     * =========================================================================
+     * CONTROLO DE MODAIS & INTERAÇÕES DOS OBJETOS
+     * =========================================================================
+     */
+    const backdrop = document.getElementById('modal-backdrop');
+    const modalBox = document.getElementById('modal-box');
+    const modalContent = document.getElementById('modal-content');
+
+    function showModal(html) {
+      modalContent.innerHTML = html;
+      backdrop.classList.remove('hidden');
+      backdrop.classList.add('flex');
+      requestAnimationFrame(() => {
+        backdrop.classList.remove('opacity-0');
+        modalBox.classList.remove('scale-95');
+        modalBox.classList.add('scale-100');
+      });
+    }
+
+    function closeModal() {
+      backdrop.classList.add('opacity-0');
+      modalBox.classList.remove('scale-100');
+      modalBox.classList.add('scale-95');
+      setTimeout(() => {
+        backdrop.classList.add('hidden');
+        backdrop.classList.remove('flex');
+      }, 280);
+    }
+
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) closeModal();
+    });
+
+    // 🎈 BALÕES
+    function popBalloon(index, el) {
+      markDiscovered(`balloon-${index}`);
+      el.classList.add('balloon-pop');
+      burstConfetti(25);
+      setTimeout(() => {
+        showModal(`
+          <div class="text-4xl mb-3">🎈💗</div>
+          <span class="text-xs uppercase tracking-widest text-roseDream-500 font-semibold">Mensagem no Balão</span>
+          <p class="font-serif text-2xl text-roseDream-900 mt-3 leading-relaxed italic">
+            “${CONFIG.balloons[index]}”
+          </p>
+          <button onclick="closeModal()" class="mt-6 px-6 py-2.5 rounded-full bg-roseDream-500 text-white text-sm font-medium shadow hover:bg-roseDream-600 transition">
+            Guardar no coração ♡
+          </button>
+        `);
+        // O balão volta suavemente após uns segundos para poder ser explorado de novo
+        setTimeout(() => el.classList.remove('balloon-pop'), 4000);
+      }, 300);
+    }
+
+    // 🎁 PRESENTE
+    function openGiftModal() {
+      markDiscovered('gift');
+      burstConfetti(35);
+      showModal(`
+        <div class="text-5xl mb-3 animate-bounce">🎁✨</div>
+        <h3 class="font-serif text-2xl font-bold text-roseDream-900">${CONFIG.giftTitle}</h3>
+        <p class="mt-4 text-sm sm:text-base text-roseDream-800 leading-relaxed">
+          ${CONFIG.giftMessage}
+        </p>
+        <div class="mt-6 p-3 rounded-2xl bg-roseDream-100/80 border border-goldLight text-xs text-roseDream-900 font-medium">
+          🎟️ Vale-carinho infinito válido todos os dias do ano
+        </div>
+      `);
+    }
+
+    // 💌 CARTINHA DE ANIVERSÁRIO
+    function openLetterModal() {
+      markDiscovered('letter');
+      const paragraphsHtml = CONFIG.letterParagraphs
+        .map(p => `<p class="mb-3.5 text-left text-sm sm:text-base text-roseDream-900/90 leading-relaxed">${p}</p>`)
+        .join('');
+
+      showModal(`
+        <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-roseDream-100 text-2xl mb-2">💌</div>
+        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-roseDream-900 mb-4">${CONFIG.letterTitle}</h3>
+        <div class="bg-cream/90 p-5 rounded-2xl border border-roseDream-200 shadow-inner">
+          <p class="font-serif italic text-lg text-left text-roseDream-800 mb-3">${CONFIG.letterSalutation}</p>
+          ${paragraphsHtml}
+          <p class="font-serif italic text-lg text-right text-roseDream-700 mt-4">${CONFIG.letterSignature}</p>
+        </div>
+      `);
+    }
+
+    // 🎵 RÁDIO / CAIXINHA DE MÚSICA
+    function openMusicModal() {
+      markDiscovered('music');
+      const current = CONFIG.playlist[state.currentTrackIndex];
+      const listHtml = CONFIG.playlist.map((song, idx) => {
+        const active = idx === state.currentTrackIndex;
+        return `
+          <button onclick="selectTrack(${idx})" class="w-full p-3 rounded-2xl text-left transition flex items-center justify-between ${active ? 'bg-roseDream-200/80 border border-roseDream-400' : 'bg-cream hover:bg-roseDream-100/70 border border-roseDream-100'}">
+            <div>
+              <p class="text-sm font-semibold text-roseDream-900">${song.title}</p>
+              <p class="text-[11px] text-roseDream-700">${song.artist} • <span class="italic">${song.moment}</span></p>
+            </div>
+            <span class="text-roseDream-500 text-lg">${active && state.isPlaying ? '🎶' : '▶️'}</span>
+          </button>
+        `;
+      }).join('');
+
+      showModal(`
+        <div class="text-3xl mb-1">🎵🎀</div>
+        <h3 class="font-serif text-2xl font-bold text-roseDream-900">Nossa Playlist</h3>
+        <p class="text-xs text-roseDream-700 mb-4">Escolhida a dedo para cada momento contigo</p>
+
+        <!-- Controlos do Player -->
+        <div class="p-4 rounded-2xl bg-gradient-to-r from-roseDream-100 to-roseDream-200/70 border border-goldLight mb-4">
+          <p class="font-serif font-bold text-lg text-roseDream-900">${current.title}</p>
+          <p class="text-xs text-roseDream-700 mb-3">${current.artist}</p>
+          
+          <div class="flex items-center justify-center gap-4">
+            <button onclick="selectTrack((state.currentTrackIndex - 1 + CONFIG.playlist.length) % CONFIG.playlist.length)" class="p-2 rounded-full bg-cream text-roseDream-800 hover:scale-110 transition">
+              <i class="ph-fill ph-skip-back text-lg"></i>
+            </button>
+            <button onclick="togglePlayPause(); openMusicModal();" class="w-12 h-12 rounded-full bg-roseDream-500 text-white shadow-md flex items-center justify-center hover:scale-105 transition">
+              <i class="ph-fill ${state.isPlaying ? 'ph-pause' : 'ph-play'} text-xl"></i>
+            </button>
+            <button onclick="selectTrack((state.currentTrackIndex + 1) % CONFIG.playlist.length)" class="p-2 rounded-full bg-cream text-roseDream-800 hover:scale-110 transition">
+              <i class="ph-fill ph-skip-forward text-lg"></i>
+            </button>
+          </div>
+
+          <div class="mt-3 flex items-center gap-2 px-2">
+            <i class="ph ph-speaker-low text-roseDream-700"></i>
+            <input type="range" min="0" max="1" step="0.05" value="${state.volume}" oninput="changeVolume(this.value)" class="w-full accent-roseDream-500 h-1.5 bg-roseDream-200 rounded-lg cursor-pointer" />
+            <i class="ph ph-speaker-high text-roseDream-700"></i>
+          </div>
+        </div>
+
+        <div class="space-y-2 max-h-48 overflow-y-auto pr-1">
+          ${listHtml}
+        </div>
+      `);
+    }
+
+    // 🌷 FLORES
+    function openFlowersModal() {
+      markDiscovered('flowers');
+      const flowersHtml = CONFIG.flowers.map(f => `
+        <div class="p-3.5 rounded-2xl bg-cream border border-roseDream-200 text-left">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-xl">${f.emoji}</span>
+            <h4 class="font-serif font-bold text-base text-roseDream-900">${f.name}</h4>
+          </div>
+          <p class="text-xs sm:text-sm text-roseDream-800 leading-relaxed">${f.text}</p>
+        </div>
+      `).join('');
+
+      showModal(`
+        <div class="text-4xl mb-2">🌷🌸🤍</div>
+        <h3 class="font-serif text-2xl font-bold text-roseDream-900 mb-1">Flores Para Ti</h3>
+        <p class="text-xs text-roseDream-700 mb-4">Porque cada flor guarda uma pequena lembrança nossa</p>
+        <div class="space-y-3">${flowersHtml}</div>
+      `);
+    }
+
+    // 💗 CORAÇÃO: "COISAS QUE AMO EM TI"
+    function openLoveReasonsModal() {
+      markDiscovered('love-heart');
+      const reason = CONFIG.thingsILove[state.loveReasonIndex];
+      showModal(`
+        <div class="text-4xl mb-2 animate-pulse">💗</div>
+        <span class="text-xs uppercase tracking-widest text-roseDream-500 font-semibold">
+          Coisas que amo em ti (${state.loveReasonIndex + 1}/${CONFIG.thingsILove.length})
+        </span>
+        <div class="min-h-[110px] flex items-center justify-center my-4 p-5 rounded-2xl bg-roseDream-100/70 border border-roseDream-200">
+          <p class="font-serif text-2xl text-roseDream-900 italic leading-snug">
+            “${reason}”
+          </p>
+        </div>
+        <button onclick="nextLoveReason()" class="px-6 py-2.5 rounded-full bg-roseDream-500 text-white text-sm font-medium shadow hover:bg-roseDream-600 transition flex items-center gap-2 mx-auto">
+          <span>Descobrir mais uma</span>
+          <span>♡</span>
+        </button>
+      `);
+    }
+
+    function nextLoveReason() {
+      state.loveReasonIndex = (state.loveReasonIndex + 1) % CONFIG.thingsILove.length;
+      burstConfetti(12);
+      openLoveReasonsModal();
+    }
+
+    // 🎂 BOLO INTERATIVO COM VELAS APAGÁVEIS
+    function openCakeModal() {
+      markDiscovered('cake');
+      const allOut = state.candlesLit.every(lit => !lit);
+
+      const candlesHtml = state.candlesLit.map((lit, i) => `
+        <button onclick="blowCandle(${i})" class="flex flex-col items-center p-2 group focus:outline-none" title="Toca para soprar a vela">
+          <div class="h-7 flex items-end justify-center">
+            ${lit 
+              ? `<div class="w-3.5 h-5 bg-amber-300 rounded-full flame shadow-[0_0_12px_#F59E0B]"></div>` 
+              : `<span class="text-xs text-roseDream-400 opacity-75">💨</span>`
+            }
+          </div>
+          <div class="w-3 h-10 rounded-full ${i === 1 ? 'bg-goldSoft' : 'bg-roseDream-400'} border border-white shadow-sm"></div>
+        </button>
+      `).join('');
+
+      showModal(`
+        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-roseDream-900">Faz um Pedido, ${CONFIG.name}! 🎂</h3>
+        <p class="text-xs text-roseDream-700 mt-1 mb-5">
+          ${allOut ? 'Todas as velinhas foram apagadas! ✨' : 'Toca em cada velinha para as apagar…'}
+        </p>
+
+        <div class="flex flex-col items-center my-4">
+          <div class="flex gap-5 mb-1">${candlesHtml}</div>
+          <div class="w-44 h-12 rounded-t-2xl bg-cream border-b-4 border-roseDream-200 shadow-sm flex items-center justify-around px-4">
+            <span>🍓</span><span>✨</span><span>🍓</span>
+          </div>
+          <div class="w-56 h-16 rounded-t-xl rounded-b-lg bg-gradient-to-r from-roseDream-300 via-roseDream-200 to-roseDream-300 border border-roseDream-400/40 shadow-md flex items-center justify-center">
+            <span class="font-serif italic font-bold text-xl text-roseDream-900">Parabéns, Jane!</span>
+          </div>
+          <div class="w-64 h-3 rounded-full bg-gradient-to-r from-goldLight via-goldSoft to-goldLight shadow"></div>
+        </div>
+
+        ${allOut ? `
+          <div class="mt-5 p-4 rounded-2xl bg-roseDream-100 border border-goldLight animate-fade-in">
+            <p class="font-serif text-lg text-roseDream-900 leading-relaxed">${CONFIG.cakeWishMessage}</p>
+            <button onclick="relightCandles()" class="mt-3 text-xs text-roseDream-600 underline">Acender velas novamente</button>
+          </div>
+        ` : ''}
+      `);
+    }
+
+    function blowCandle(index) {
+      if (state.candlesLit[index]) {
+        state.candlesLit[index] = false;
+        if (state.candlesLit.every(lit => !lit)) {
+          burstConfetti(55);
+        }
+        openCakeModal();
+      }
+    }
+
+    function relightCandles() {
+      state.candlesLit = [true, true, true];
+      openCakeModal();
+    }
+
+    // 🤫 PEQUENOS SEGREDOS ESCONDIDOS
+    function triggerSecret(index, el) {
+      markDiscovered(`secret-${index}`);
+      burstConfetti(20);
+      const secret = CONFIG.secrets[index];
+      showModal(`
+        <div class="inline-block px-3 py-1 rounded-full bg-goldLight/60 text-roseDream-900 text-xs font-semibold mb-3">
+          Segredo Descoberto (${index + 1}/5)
+        </div>
+        <h3 class="font-serif text-2xl font-bold text-roseDream-900 mb-3">${secret.title}</h3>
+        <p class="text-sm sm:text-base text-roseDream-800 leading-relaxed bg-cream p-4 rounded-2xl border border-roseDream-200">
+          ${secret.text}
+        </p>
+      `);
+    }
+
+    // 🗂️ GAVETA "PARA QUANDO..."
+    function openDrawerModal() {
+      markDiscovered('drawer');
+      const cardsHtml = CONFIG.openWhenCards.map((c, idx) => `
+        <button onclick="openSingleWhenCard(${idx})" class="p-3.5 rounded-2xl bg-cream hover:bg-roseDream-100/80 border border-roseDream-200 text-left transition flex items-center gap-3 shadow-sm">
+          <span class="text-2xl">${c.emoji}</span>
+          <span class="font-serif font-bold text-base text-roseDream-900 leading-snug">${c.label}</span>
+        </button>
+      `).join('');
+
+      showModal(`
+        <div class="text-3xl mb-1">💌🗂️</div>
+        <h3 class="font-serif text-2xl font-bold text-roseDream-900">Gaveta “Para quando…”</h3>
+        <p class="text-xs text-roseDream-700 mb-4">Abre um cartão sempre que o teu coração precisar</p>
+        <div class="grid grid-cols-1 gap-2.5 text-left">${cardsHtml}</div>
+      `);
+    }
+
+    function openSingleWhenCard(idx) {
+      const card = CONFIG.openWhenCards[idx];
+      showModal(`
+        <button onclick="openDrawerModal()" class="text-xs text-roseDream-600 flex items-center gap-1 mb-3 hover:underline">
+          <i class="ph ph-arrow-left"></i> Voltar à gaveta
+        </button>
+        <div class="text-4xl mb-2">${card.emoji}</div>
+        <h3 class="font-serif text-2xl font-bold text-roseDream-900 mb-4">${card.label}</h3>
+        <div class="p-5 rounded-2xl bg-roseDream-100/70 border border-roseDream-200">
+          <p class="font-serif text-xl text-roseDream-900 leading-relaxed italic">“${card.message}”</p>
+        </div>
+      `);
+    }
+
+    // 🕰️ CONTADOR & MEMÓRIAS
+    function openMemoriesModal() {
+      markDiscovered('memories');
+      const start = new Date(CONFIG.importantDate);
+      const now = new Date();
+      const diffDays = Math.max(1, Math.floor((now - start) / (1000 * 60 * 60 * 24)));
+
+      const timelineHtml = CONFIG.memories.map(m => `
+        <div class="relative pl-5 border-l-2 border-roseDream-300 pb-4 last:pb-0 text-left">
+          <span class="absolute -left-[7px] top-1 w-3 h-3 rounded-full bg-roseDream-500 border-2 border-cream"></span>
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-roseDream-500">${m.date}</span>
+          <h4 class="font-serif font-bold text-lg text-roseDream-900">${m.title}</h4>
+          <p class="text-xs sm:text-sm text-roseDream-800 mt-0.5">${m.desc}</p>
+        </div>
+      `).join('');
+
+      showModal(`
+        <div class="text-3xl mb-1">🕰️💗</div>
+        <h3 class="font-serif text-2xl font-bold text-roseDream-900 mb-3">Nossas Memórias</h3>
+        
+        <div class="p-4 rounded-2xl bg-gradient-to-r from-roseDream-100 to-roseDream-200/70 border border-goldLight mb-5">
+          <p class="text-xs uppercase tracking-widest text-roseDream-700 font-semibold">${CONFIG.importantDateLabel}</p>
+          <p class="font-serif text-3xl font-bold text-roseDream-900 mt-1">${diffDays} dias</p>
+          <p class="text-[11px] text-roseDream-700">de carinho, sorrisos e histórias ✨</p>
+        </div>
+
+        <div class="px-2">${timelineHtml}</div>
+      `);
+    }
+
+    /**
+     * =========================================================================
+     * SURPRESA FINAL EMOCIONAL
+     * =========================================================================
+     */
+    function openFinalSurprise() {
+      markDiscovered('final');
+      const finalScreen = document.getElementById('final-screen');
+      finalScreen.classList.remove('hidden');
+      burstConfetti(90);
+      requestAnimationFrame(() => {
+        finalScreen.classList.remove('opacity-0');
+      });
+    }
+
+    function closeFinalScreen() {
+      const finalScreen = document.getElementById('final-screen');
+      finalScreen.classList.add('opacity-0');
+      setTimeout(() => finalScreen.classList.add('hidden'), 700);
+    }
+
+    /**
+     * =========================================================================
+     * SISTEMA LEVE DE PARTÍCULAS (CONFETTIS, CORAÇÕES & PÉTALAS SUAVES)
+     * =========================================================================
+     */
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function initParticles() {
+      // Algumas pétalas suaves permanentes a flutuar
+      for (let i = 0; i < 14; i++) {
+        particles.push(createPetal(true));
+      }
+      animateParticles();
+    }
+
+    function createPetal(randomY = false) {
+      const colors = ['#FFC2D6', '#FF94B8', '#F3E5AB', '#FFE0EB'];
+      return {
+        x: Math.random() * canvas.width,
+        y: randomY ? Math.random() * canvas.height : -20,
+        size: 5 + Math.random() * 6,
+        speedY: 0.4 + Math.random() * 0.8,
+        speedX: (Math.random() - 0.5) * 0.7,
+        rotation: Math.random() * 360,
+        rotSpeed: (Math.random() - 0.5) * 2,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        type: 'petal',
+        alpha: 0.55
+      };
+    }
+
+    function burstConfetti(count = 30) {
+      const emojis = ['💗', '✨', '🌸', '🎀', '♡'];
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: canvas.width * (0.2 + Math.random() * 0.6),
+          y: canvas.height * (0.3 + Math.random() * 0.3),
+          size: 12 + Math.random() * 10,
+          speedY: -3 - Math.random() * 5,
+          speedX: (Math.random() - 0.5) * 7,
+          gravity: 0.14,
+          emoji: emojis[Math.floor(Math.random() * emojis.length)],
+          type: 'burst',
+          alpha: 1
+        });
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+
+        if (p.type === 'petal') {
+          p.y += p.speedY;
+          p.x += p.speedX + Math.sin(p.y * 0.015) * 0.3;
+          p.rotation += p.rotSpeed;
+
+          if (p.y > canvas.height + 20) {
+            particles[i] = createPetal(false);
+            continue;
+          }
+
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.rotation * Math.PI) / 180);
+          ctx.globalAlpha = p.alpha;
+          ctx.fillStyle = p.color;
+          ctx.beginPath();
+          ctx.ellipse(0, 0, p.size, p.size * 0.6, 0, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        } else {
+          p.speedY += p.gravity;
+          p.x += p.speedX;
+          p.y += p.speedY;
+          p.alpha -= 0.012;
+
+          if (p.alpha <= 0) {
+            particles.splice(i, 1);
+            continue;
+          }
+
+          ctx.save();
+          ctx.globalAlpha = p.alpha;
+          ctx.font = `${p.size}px serif`;
+          ctx.fillText(p.emoji, p.x, p.y);
+          ctx.restore();
+        }
+      }
+
+      requestAnimationFrame(animateParticles);
+    }
+  </script>
+</body>
+</html>
